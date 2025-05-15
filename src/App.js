@@ -4,12 +4,15 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { Box, Container, AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
 import './App.css';
 
 // Components
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AppointmentManagement from './components/AppointmentManagement';
+import BillingManagement from './components/Billing/BillingManagement';
 
 // Create theme
 const theme = createTheme({
@@ -23,6 +26,16 @@ const theme = createTheme({
       main: '#9c27b0',
       light: '#ba68c8',
       dark: '#7b1fa2',
+    },
+    success: {
+      main: '#2e7d32',
+      light: '#4caf50',
+      dark: '#1b5e20',
+    },
+    warning: {
+      main: '#ed6c02',
+      light: '#ff9800',
+      dark: '#e65100',
     },
   },
   typography: {
@@ -66,6 +79,60 @@ const theme = createTheme({
   },
 });
 
+// Navigation component
+const Navigation = () => {
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+
+  if (isAuthPage) return null;
+
+  return (
+    <AppBar position="static" sx={{ mb: 3 }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, fontWeight: 600 }}
+          >
+            Patient Management System
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Button
+              component={Link}
+              to="/appointments"
+              color="inherit"
+              sx={{
+                backgroundColor: location.pathname === '/appointments' ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+              }}
+            >
+              Appointments
+            </Button>
+            <Button
+              component={Link}
+              to="/billing"
+              color="inherit"
+              sx={{
+                backgroundColor: location.pathname === '/billing' ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+              }}
+            >
+              Billing
+            </Button>
+            <Button
+              component={Link}
+              to="/login"
+              color="inherit"
+              sx={{ ml: 2 }}
+            >
+              Logout
+            </Button>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+};
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -73,10 +140,12 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <div className="App">
           <Router>
+            <Navigation />
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/appointments" element={<AppointmentManagement />} />
+              <Route path="/billing" element={<BillingManagement />} />
               <Route path="/" element={<Navigate to="/login" replace />} />
             </Routes>
           </Router>
