@@ -13,6 +13,11 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import AppointmentManagement from './components/AppointmentManagement';
 import BillingManagement from './components/Billing/BillingManagement';
+import DoctorVerification from './components/Admin/DoctorVerification';
+import AdminDashboard from './components/Admin/AdminDashboard';
+import MedicalRecords from './components/MedicalRecords/MedicalRecords';
+import { NotificationProvider } from './components/Notification/NotificationContext';
+import NotificationCenter from './components/Notification/NotificationCenter';
 
 // Create theme
 const theme = createTheme({
@@ -83,6 +88,7 @@ const theme = createTheme({
 const Navigation = () => {
   const location = useLocation();
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+  const isAdminPage = location.pathname.startsWith('/admin');
 
   if (isAuthPage) return null;
 
@@ -96,28 +102,67 @@ const Navigation = () => {
             sx={{ flexGrow: 1, fontWeight: 600 }}
           >
             Patient Management System
+            {isAdminPage && ' - Admin Dashboard'}
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button
-              component={Link}
-              to="/appointments"
-              color="inherit"
-              sx={{
-                backgroundColor: location.pathname === '/appointments' ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
-              }}
-            >
-              Appointments
-            </Button>
-            <Button
-              component={Link}
-              to="/billing"
-              color="inherit"
-              sx={{
-                backgroundColor: location.pathname === '/billing' ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
-              }}
-            >
-              Billing
-            </Button>
+          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            {!isAdminPage ? (
+              <>
+                <Button
+                  component={Link}
+                  to="/appointments"
+                  color="inherit"
+                  sx={{
+                    backgroundColor: location.pathname === '/appointments' ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+                  }}
+                >
+                  Appointments
+                </Button>
+                <Button
+                  component={Link}
+                  to="/medical-records"
+                  color="inherit"
+                  sx={{
+                    backgroundColor: location.pathname === '/medical-records' ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+                  }}
+                >
+                  Medical Records
+                </Button>
+                <Button
+                  component={Link}
+                  to="/billing"
+                  color="inherit"
+                  sx={{
+                    backgroundColor: location.pathname === '/billing' ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+                  }}
+                >
+                  Billing
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  component={Link}
+                  to="/admin/dashboard"
+                  color="inherit"
+                  sx={{
+                    backgroundColor: location.pathname === '/admin/dashboard' ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+                  }}
+                >
+                  Dashboard
+                </Button>
+                <Button
+                  component={Link}
+                  to="/admin/doctor-verification"
+                  color="inherit"
+                  sx={{
+                    backgroundColor: location.pathname === '/admin/doctor-verification' ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+                  }}
+                >
+                  Doctor Verification
+                </Button>
+              </>
+            )}
+            <NotificationCenter />
             <Button
               component={Link}
               to="/login"
@@ -137,20 +182,25 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <div className="App">
-          <Router>
-            <Navigation />
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/appointments" element={<AppointmentManagement />} />
-              <Route path="/billing" element={<BillingManagement />} />
-              <Route path="/" element={<Navigate to="/login" replace />} />
-            </Routes>
-          </Router>
-        </div>
-      </LocalizationProvider>
+      <NotificationProvider>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <div className="App">
+            <Router>
+              <Navigation />
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/appointments" element={<AppointmentManagement />} />
+                <Route path="/billing" element={<BillingManagement />} />
+                <Route path="/medicalrecords" element={<MedicalRecords />} />
+                <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                <Route path="/admin/doctor-verification" element={<DoctorVerification />} />
+                <Route path="/" element={<Navigate to="/login" replace />} />
+              </Routes>
+            </Router>
+          </div>
+        </LocalizationProvider>
+      </NotificationProvider>
     </ThemeProvider>
   );
 }
