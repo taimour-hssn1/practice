@@ -1,0 +1,232 @@
+.medical-images-container {
+  padding: 32px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.medical-images-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.medical-images-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a237e;
+  margin: 0;
+}
+
+.medical-images-grid {
+  margin-top: 24px;
+}
+
+.medical-image-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.medical-image-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.medical-image-preview {
+  position: relative;
+  padding-top: 75%;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #eee;
+}
+
+.medical-image-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.medical-image-card:hover .medical-image-thumbnail {
+  transform: scale(1.05);
+}
+
+.medical-image-details {
+  padding: 20px;
+  flex-grow: 1;
+  background: white;
+}
+
+.medical-image-details h6 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a237e;
+  margin-bottom: 8px;
+}
+
+.medical-image-details .MuiTypography-body2 {
+  color: #666;
+  line-height: 1.5;
+}
+
+.medical-image-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 20px;
+  background: #f8f9fa;
+  border-top: 1px solid #eee;
+}
+
+.medical-image-actions .MuiIconButton-root {
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.medical-image-actions .MuiIconButton-root:hover {
+  color: #1a237e;
+}
+
+.upload-form {
+  padding: 24px 0;
+}
+
+.medical-image-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+}
+
+.medical-image-full {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dialog styles */
+.MuiDialog-paper {
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+.MuiDialogTitle-root {
+  background: #1a237e;
+  color: white !important;
+  padding: 20px 24px !important;
+}
+
+.MuiDialogContent-root {
+  padding: 24px !important;
+}
+
+.MuiDialogActions-root {
+  padding: 16px 24px !important;
+  background: #f8f9fa;
+}
+
+/* Upload button styles */
+.upload-button {
+  background: linear-gradient(45deg, #1a237e, #3949ab) !important;
+  color: white !important;
+  padding: 12px 24px !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 6px rgba(26, 35, 126, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.upload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(26, 35, 126, 0.3) !important;
+}
+
+/* File upload styles */
+.file-upload-button {
+  border: 2px dashed #1a237e !important;
+  border-radius: 8px !important;
+  padding: 24px !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.file-upload-button:hover {
+  background-color: rgba(26, 35, 126, 0.05) !important;
+}
+
+/* Security watermark */
+.medical-image-watermark {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #1a237e;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading and error states */
+.medical-image-loading,
+.medical-image-error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px 24px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.medical-image-loading {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a237e;
+}
+
+.medical-image-error {
+  background: rgba(211, 47, 47, 0.1);
+  color: #d32f2f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .medical-images-container {
+    padding: 16px;
+  }
+
+  .medical-images-header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .medical-images-title {
+    font-size: 24px;
+  }
+
+  .medical-image-card {
+    margin-bottom: 16px;
+  }
+} 

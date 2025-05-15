@@ -1,0 +1,192 @@
+.medical-records-container {
+  padding: 32px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.medical-records-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.medical-records-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a237e;
+  margin: 0;
+}
+
+.add-record-button {
+  background: linear-gradient(45deg, #1a237e, #3949ab) !important;
+  color: white !important;
+  padding: 12px 24px !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 6px rgba(26, 35, 126, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.add-record-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(26, 35, 126, 0.3) !important;
+}
+
+.medical-records-content {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.medical-records-tabs {
+  border-bottom: 1px solid #eee;
+  background: #f8f9fa;
+}
+
+.medical-records-tabs .MuiTab-root {
+  text-transform: none;
+  font-weight: 600;
+  min-width: 120px;
+  color: #666;
+}
+
+.medical-records-tabs .Mui-selected {
+  color: #1a237e !important;
+}
+
+.medical-records-grid {
+  padding: 24px;
+}
+
+.medical-record-card {
+  height: 100%;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.medical-record-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.medical-record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.medical-record-header h6 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a237e;
+  margin: 0;
+}
+
+.medical-record-notes {
+  margin-top: 12px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.medical-record-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 16px;
+  background: #f8f9fa;
+  border-top: 1px solid #eee;
+}
+
+.medical-record-actions .MuiIconButton-root {
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.medical-record-actions .MuiIconButton-root:hover {
+  color: #1a237e;
+}
+
+/* Dialog styles */
+.medical-record-dialog .MuiDialog-paper {
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+.medical-record-dialog .MuiDialogTitle-root {
+  background: #1a237e;
+  color: white !important;
+  padding: 20px 24px !important;
+}
+
+.medical-record-dialog .MuiDialogContent-root {
+  padding: 24px !important;
+}
+
+.medical-record-dialog .MuiDialogActions-root {
+  padding: 16px 24px !important;
+  background: #f8f9fa;
+}
+
+.add-record-form {
+  padding: 16px 0;
+}
+
+.medical-record-details {
+  padding: 16px 0;
+}
+
+.medical-record-details .MuiTypography-subtitle2 {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* Status chip colors */
+.MuiChip-colorSuccess {
+  background-color: #e8f5e9 !important;
+  color: #2e7d32 !important;
+}
+
+.MuiChip-colorWarning {
+  background-color: #fff3e0 !important;
+  color: #ef6c00 !important;
+}
+
+.MuiChip-colorError {
+  background-color: #ffebee !important;
+  color: #c62828 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .medical-records-container {
+    padding: 16px;
+  }
+
+  .medical-records-header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .medical-records-title {
+    font-size: 24px;
+  }
+
+  .medical-records-grid {
+    padding: 16px;
+  }
+
+  .medical-record-card {
+    margin-bottom: 16px;
+  }
+} 
